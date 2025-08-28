@@ -1,12 +1,12 @@
 #!/bin/bash
 
 tar -xzf NthPrime.tgz
-//extract files
+#extract files
 
 cd NthPrime || exit
 
 gcc nth_prime.c main.c -o NthPrime -Wall
-//compile C program
+#compile C program
 
 ./NthPrime "$@"
-//calling the executable
+#calling the executable
