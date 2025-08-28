@@ -8,5 +8,5 @@ cd NthPrime || exit
 gcc nth_prime.c main.c -o NthPrime -Wall
 #compile C program
 
-./NthPrime "$@"
+./NthPrime "$1"
 #calling the executable
