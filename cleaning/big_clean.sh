@@ -1,15 +1,21 @@
 #!/bin/bash
 
-tar_archive="$1"
+TAR_ARCHIVE=$1
 #taking a compressed tar archive as input
+FOLDER_NAME=$(basename $TAR_ARCHIVE .tgz)
+CLEAN_TAR="cleaned_${TAR_ARCHIVE}"
 
-mktemp -d scratch
+SCRATCH=$(mktemp --directory SCRATCH-XXXXXX)
 #creating temporary directory to do work in
 
-tar -xzf "$tar_archive" -C /Users/hhannahs/Desktop/CSCI/3412/lab-0-imbroglio-0/cleaning/scratch
+tar -xzf $TAR_ARCHIVE -C $SCRATCH
 #extracting the tar archive
 
-find . | grep "DELETE ME!" | xargs rm -f
-#looking for files that say "DELETE ME!"
+grep -rl "DELETE ME\!" $SCRATCH | xargs rm
+#looking for files that say "DELETE ME!" and deleting them
 
-#tar -czvf cleaned_"$tar_archive$".tar.gz cleaning -C /scratch/
+cd $SCRATCH || exit
+
+tar -czf $CLEAN_TAR $FOLDER_NAME
+
+mv $CLEAN_TAR ./..
