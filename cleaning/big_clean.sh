@@ -1,7 +1,5 @@
 #!/bin/bash
 
-/usr/local/opt/grep/libexec/gnubin
-
 TAR_ARCHIVE=$1
 #taking a compressed tar archive as input
 FOLDER_NAME=$(basename "$TAR_ARCHIVE" .tgz)
